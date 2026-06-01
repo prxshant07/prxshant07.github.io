@@ -9,6 +9,7 @@ export default defineConfig({
       prerender: {
         enabled: true,
         crawlLinks: true, // Automatically finds and prerenders linked routes
+        outputPath: '/index.html',
       },
     },
     // Keep your existing server entry config (it won't be used in SPA build but safe to keep)
