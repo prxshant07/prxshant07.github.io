@@ -1,5 +1,4 @@
 // Edit this file to add, remove, or update projects.
-// Each project needs a title, description, tags, and optional links.
 
 export interface Project {
   title: string;
@@ -8,48 +7,95 @@ export interface Project {
   github?: string;
   demo?: string;
   year: string;
+  highlights?: string[];
 }
 
 export const projects: Project[] = [
   {
-    title: "Project One",
+    title: "Learnlytics — Student Performance Analytics",
     description:
-      "Short one-line description of what this project does and what makes it interesting.",
-    tags: ["Python", "TensorFlow", "ML"],
-    year: "2025",
-    github: "https://github.com/yourusername/project-one",
+      "Full-stack ML web app that predicts student performance from behavioral and subject-level metrics, with a real-time analytics dashboard.",
+    tags: ["Python", "Flask", "React", "Scikit-learn", "XGBoost", "Vercel", "Render"],
+    year: "Aug 2025 – Oct 2025",
+    github: "https://github.com/prxshant07/Learnlytics---student-perfomance-predictor",
+    highlights: [
+      "Engineered Flask REST APIs for low-latency real-time ML predictions",
+      "React analytics dashboard with dynamic visualization",
+      "Decoupled frontend-backend architecture with cloud-hosted APIs",
+      "Regression models with preprocessing and feature engineering",
+    ],
   },
   {
-    title: "Project Two",
+    title: "DocFlow — Async Document Processing System",
     description:
-      "A full-stack web application showcasing modern tooling and clean architecture.",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    year: "2024",
-    github: "https://github.com/yourusername/project-two",
-    demo: "https://example.com",
+      "Distributed, event-driven document processing pipeline with real-time progress streaming and multi-stage workflow orchestration.",
+    tags: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "Celery", "Redis", "Docker"],
+    year: "Feb 2026 – Apr 2026",
+    github: "https://github.com/prxshant07/DocFlow",
+    highlights: [
+      "Reduced processing latency by 40% with async Celery workers",
+      "Real-time progress via Redis Pub/Sub and WebSockets",
+      "State machine: queued → processing → completed/failed with retries",
+      "Service-oriented backend with strongly typed schemas",
+    ],
   },
   {
-    title: "Project Three",
+    title: "BirdCLEF+ 2026 — Bioacoustic Species Classification",
     description:
-      "Replace this with your own project — open src/data/projects.ts to edit.",
-    tags: ["AI", "NLP"],
-    year: "2024",
-    github: "https://github.com/yourusername/project-three",
+      "Audio Spectrogram Transformer models trained on 10k+ labeled bioacoustic recordings for multi-class species classification.",
+    tags: ["Python", "PyTorch", "librosa", "Pandas", "scikit-learn"],
+    year: "Mar 2026 – Present",
+    highlights: [
+      "AST and CNN-based feature extraction for species recognition",
+      "End-to-end audio preprocessing: mel spectrograms, noise filtering, augmentation",
+      "Evaluated with macro F1-score aligned to BirdCLEF metrics",
+    ],
   },
 ];
 
 export const skills = {
-  "AI & Machine Learning": ["Python", "TensorFlow", "PyTorch", "scikit-learn", "Pandas", "NumPy"],
-  "Full Stack Development": ["React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS"],
-  "Backend & Data": ["PostgreSQL", "MongoDB", "REST APIs", "Docker", "Git"],
+  "Languages": ["Python", "JavaScript", "TypeScript", "SQL"],
+  "Machine Learning": ["PyTorch", "Scikit-learn", "XGBoost", "CNNs", "Audio Spectrogram Transformers", "Feature Engineering"],
+  "Backend Engineering": ["FastAPI", "Flask", "REST APIs", "Node.js", "Celery", "Redis", "WebSockets"],
+  "Databases": ["PostgreSQL", "MongoDB"],
+  "Frontend": ["React.js", "Next.js"],
+  "DevOps & Cloud": ["Docker", "Git", "Render", "Vercel", "CI/CD", "Linux", "AWS (Basics)"],
 };
+
+export const experience = [
+  {
+    role: "MERN-Stack Developer Intern",
+    company: "Ypsilon IT Solutions",
+    location: "Indore, India",
+    period: "May 2025 – Jun 2025",
+    points: [
+      "Developed a restaurant delivery management system backend using MongoDB and RESTful APIs.",
+      "Improved order management efficiency by ~25% by optimizing MongoDB queries and redesigning schemas.",
+      "Optimized database schemas and queries to enhance performance and scalability.",
+    ],
+  },
+];
+
+export const education = {
+  degree: "B.Tech in Computer Science & Engineering (AI & ML)",
+  school: "IPS Academy, Institute of Engineering & Science — Indore",
+  period: "Aug 2022 – Present",
+  coursework: ["Data Structures & Algorithms", "Operating Systems", "DBMS", "Computer Networks", "OOP"],
+};
+
+export const certifications = [
+  "Cloud Computing and Distributed Systems – IIT Kanpur (NPTEL, Elite)",
+  "Deep Learning and Neural Networks with Keras (Coursera)",
+  "Machine Learning with Python — IBM (Coursera)",
+  "Foundational C# with Microsoft — freeCodeCamp",
+];
 
 export const profile = {
   name: "Prashant Singh Rajput",
-  role: "AI & ML Student · Full Stack Developer",
+  role: "ML Engineer · Backend & Full-Stack Developer",
   tagline:
-    "Computer Science student building intelligent systems and clean web experiences. Passionate about turning ideas into shipped products.",
-  email: "prashant@example.com",
-  github: "https://github.com/yourusername",
-  linkedin: "https://linkedin.com/in/yourusername",
+    "Machine Learning Engineer and Backend Developer building scalable distributed systems, async processing pipelines, REST APIs, and ML-powered applications.",
+  email: "prashantrajput7116@gmail.com",
+  github: "https://github.com/prxshant07",
+  linkedin: "https://www.linkedin.com/in/prxshant07",
 };
