@@ -3,11 +3,16 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -15,21 +20,51 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Node
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
+
       - name: Install dependencies
         run: npm ci
-      - name: Build
+
+      - name: Build Static Site
         run: npm run build
-      - name: Fix Routing (SPA Fallback)
-        run: cp dist/index.html dist/404.html
+        env:
+          NODE_ENV: production
+
+      - name: Debug Build Output
+        run: |
+          echo "=== Listing dist directory ==="
+          ls -R dist
+
+      - name: Prepare Deployment Artifact
+        run: |
+          # Create a temporary deployment folder
+          mkdir -p deploy_root
+          
+          # Check if files are in dist/client (common for TanStack SPA mode)
+          if [ -d "dist/client" ] && [ -f "dist/client/index.html" ]; then
+            echo "Found client files in dist/client. Moving to root..."
+            cp -r dist/client/* deploy_root/
+            cp deploy_root/index.html deploy_root/404.html
+          # Check if files are directly in dist
+          elif [ -f "dist/index.html" ]; then
+            echo "Found index.html in dist root."
+            cp dist/index.html deploy_root/404.html
+            # Copy other assets if they exist in dist root but not client
+            if [ -d "dist/assets" ]; then cp -r dist/assets deploy_root/; fi
+          else
+            echo "ERROR: No index.html found in dist or dist/client!"
+            exit 1
+          fi
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./deploy_root
 
   deploy:
     environment:
