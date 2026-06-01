@@ -12,6 +12,20 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "VedaAi- A.I. Assessment Generator",
+    description:
+      "Full-stack web app that Generates Assignments, Questions and Exams with a real-time analytics dashboard.",
+    tags: ["Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "Redis", "BullMQ", "WebSockets", "LLM Integration", "Render"],
+    year: "May 2026",
+    github: "https://github.com/prxshant07/VedaAi",
+    highlights: [
+      "Implemented asynchronous processing with BullMQ, Redis, and background workers",
+      "Developed real-time job tracking using WebSockets and event-driven architecture",
+      "Generated structured assessment papers with AI, difficulty tagging, and marks allocation",
+      "Designed scalable REST APIs with MongoDB persistence and queue-based workflows",
+    ],
+  },
+  {
     title: "Learnlytics — Student Performance Analytics",
     description:
       "Full-stack ML web app that predicts student performance from behavioral and subject-level metrics, with a real-time analytics dashboard.",
