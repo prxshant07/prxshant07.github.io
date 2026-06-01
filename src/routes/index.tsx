@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Github, Linkedin, Mail, ExternalLink, ArrowUpRight } from "lucide-react";
-import { profile, projects, skills } from "@/data/projects";
+import { Github, Linkedin, Mail, ExternalLink, ArrowUpRight, Briefcase, GraduationCap, Award } from "lucide-react";
+import { profile, projects, skills, experience, education, certifications } from "@/data/projects";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,7 +22,10 @@ function Index() {
         <Hero />
         <About />
         <Skills />
+        <Experience />
         <Projects />
+        <Education />
+        <Certifications />
         <Contact />
         <Footer />
       </div>
@@ -36,8 +39,9 @@ function Nav() {
       <a href="#top" className="font-mono font-semibold tracking-tight">
         {"<"}prashant{" />"}
       </a>
-      <div className="flex items-center gap-6 text-muted-foreground">
+      <div className="hidden sm:flex items-center gap-6 text-muted-foreground">
         <a href="#about" className="hover:text-foreground transition-colors">about</a>
+        <a href="#experience" className="hover:text-foreground transition-colors">experience</a>
         <a href="#work" className="hover:text-foreground transition-colors">work</a>
         <a href="#contact" className="hover:text-foreground transition-colors">contact</a>
       </div>
@@ -90,15 +94,15 @@ function About() {
       <SectionHeading num="01." title="about" />
       <div className="space-y-4 text-muted-foreground leading-relaxed">
         <p>
-          I'm a Computer Science student exploring the intersection of{" "}
-          <span className="text-foreground">artificial intelligence</span> and{" "}
-          <span className="text-foreground">modern web development</span>. My focus is on
-          building systems that are both intelligent and elegant — from training models to
-          shipping production interfaces.
+          I'm a Computer Science (AI & ML) undergrad at{" "}
+          <span className="text-foreground">IPS Academy, Indore</span>, focused on building
+          scalable <span className="text-foreground">distributed systems</span>, async
+          processing pipelines, and <span className="text-foreground">ML-powered applications</span>.
         </p>
         <p>
-          Currently learning by doing: building projects end-to-end, contributing to open
-          source, and figuring out how to make complex ideas feel simple.
+          I work across the stack — training models in PyTorch, shipping FastAPI / Flask
+          backends with Redis and PostgreSQL, and crafting React / Next.js interfaces that
+          make complex workflows feel simple.
         </p>
       </div>
     </section>
@@ -130,10 +134,39 @@ function Skills() {
   );
 }
 
+function Experience() {
+  return (
+    <section id="experience" className="mb-24">
+      <SectionHeading num="03." title="experience" />
+      <div className="space-y-6">
+        {experience.map((e) => (
+          <article key={e.role + e.company} className="rounded-lg border border-border bg-surface p-6">
+            <div className="flex items-start gap-3 mb-2">
+              <Briefcase className="h-5 w-5 text-primary mt-1 shrink-0" />
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold">{e.role}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {e.company} · {e.location}
+                </p>
+                <p className="font-mono text-xs text-muted-foreground mt-1">{e.period}</p>
+              </div>
+            </div>
+            <ul className="mt-3 space-y-2 text-muted-foreground text-sm leading-relaxed list-disc list-inside">
+              {e.points.map((pt) => (
+                <li key={pt}>{pt}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Projects() {
   return (
     <section id="work" className="mb-24">
-      <SectionHeading num="03." title="selected work" />
+      <SectionHeading num="04." title="selected work" />
       <div className="space-y-4">
         {projects.map((p) => (
           <article
@@ -171,6 +204,13 @@ function Projects() {
               </div>
             </div>
             <p className="text-muted-foreground leading-relaxed mb-4">{p.description}</p>
+            {p.highlights && (
+              <ul className="mb-4 space-y-1.5 text-sm text-muted-foreground list-disc list-inside">
+                {p.highlights.map((h) => (
+                  <li key={h}>{h}</li>
+                ))}
+              </ul>
+            )}
             <div className="flex flex-wrap gap-2">
               {p.tags.map((t) => (
                 <span key={t} className="font-mono text-xs text-primary">
@@ -188,10 +228,51 @@ function Projects() {
   );
 }
 
+function Education() {
+  return (
+    <section className="mb-24">
+      <SectionHeading num="05." title="education" />
+      <article className="rounded-lg border border-border bg-surface p-6">
+        <div className="flex items-start gap-3 mb-2">
+          <GraduationCap className="h-5 w-5 text-primary mt-1 shrink-0" />
+          <div>
+            <h3 className="text-lg font-semibold">{education.degree}</h3>
+            <p className="text-sm text-muted-foreground">{education.school}</p>
+            <p className="font-mono text-xs text-muted-foreground mt-1">{education.period}</p>
+          </div>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {education.coursework.map((c) => (
+            <span key={c} className="rounded-md border border-border px-2.5 py-1 text-xs font-mono text-muted-foreground">
+              {c}
+            </span>
+          ))}
+        </div>
+      </article>
+    </section>
+  );
+}
+
+function Certifications() {
+  return (
+    <section className="mb-24">
+      <SectionHeading num="06." title="certifications" />
+      <ul className="space-y-2">
+        {certifications.map((c) => (
+          <li key={c} className="flex items-start gap-3 text-muted-foreground">
+            <Award className="h-4 w-4 text-primary mt-1 shrink-0" />
+            <span>{c}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function Contact() {
   return (
     <section id="contact" className="mb-24">
-      <SectionHeading num="04." title="contact" />
+      <SectionHeading num="07." title="contact" />
       <p className="text-muted-foreground mb-6 leading-relaxed">
         Open to internships, collaborations, and interesting problems. The fastest way to
         reach me is below.
