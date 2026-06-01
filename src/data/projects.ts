@@ -94,7 +94,7 @@ export const education = {
   degree: "B.Tech in Computer Science & Engineering (AI & ML)",
   school: "IPS Academy, Institute of Engineering & Science — Indore",
   period: "Aug 2022 – Present",
-  coursework: ["Data Structures & Algorithms", "Operating Systems", "DBMS", "Computer Networks", "OOP"],
+  coursework: ["Data Structures & Algorithms", "Operating Systems", "DBMS", "Computer Networks", "OOP", "Artificial Intelligence", "Machine Learning", "Natural Language Processing"],
 };
 
 export const certifications = [

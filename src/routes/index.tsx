@@ -221,9 +221,6 @@ function Projects() {
           </article>
         ))}
       </div>
-      <p className="mt-6 font-mono text-xs text-muted-foreground">
-        // edit <span className="text-foreground">src/data/projects.ts</span> to add or remove projects
-      </p>
     </section>
   );
 }
